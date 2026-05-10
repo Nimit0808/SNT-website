@@ -1,24 +1,48 @@
 import React, { useState } from 'react';
 
+import arinImg from '../assets/team/Arin_Kumar.JPG';
+import atulImg from '../assets/team/Atul_Gadkoti.JPG';
+import hrishirajImg from '../assets/team/Hrishiraj_Chowdhary.JPG';
+import jiteshImg from '../assets/team/Jitesh_Sagar.JPG';
+import moquaddasImg from '../assets/team/Moquaddas_Tanweer_Waris.JPG';
+import upanshuImg from '../assets/team/Upanshu_Smit.JPG';
+import vanshImg from '../assets/team/vansh_jain.jpg';
+import amanImg from '../assets/team/Aman_Pal.png';
+import architImg from '../assets/team/Archit_Dubey.png';
+import bhargabImg from '../assets/team/Bhargab_Kashyap_Keot.png';
+import jayantImg from '../assets/team/Jayant_Raj_Verma.png';
+import khushiImg from '../assets/team/Khushi_Ambastha.jpeg';
+import kshitizImg from '../assets/team/Kshitiz_Singh.JPG';
+import kushagraImg from '../assets/team/Kushagra_Vishwakrma.png';
+import nagoraoImg from '../assets/team/Nagorao_Dinker_Kute.png';
+import omImg from '../assets/team/Om_Gaurav.png';
+import ritikImg from '../assets/team/Ritik_Prajapati.png';
+import shashankImg from '../assets/team/Shashank_Bindal.png';
+import vibhorImg from '../assets/team/Vibhor_Agarwal.png';
+import yashuImg from '../assets/team/Yashu_Raj.png';
+import karanImg from '../assets/team/Dr_Karan_Malik.png';
+import akashImg from '../assets/team/Dr_Akash_Yadav.png';
+
+
 // Convener in centre, Co-Conveners on each side
 const facultyAdvisors = [
   { name: 'Dr. Gargi Shri Vastav', role: 'Co-Convener', centre: false },
-  { name: 'Dr. Karan Malik', role: 'Convener', centre: true },
-  { name: 'Dr. Akash Yadav', role: 'Co-Convener', centre: false },
+  { name: 'Dr. Karan Malik', role: 'Convener', centre: true, image: karanImg },
+  { name: 'Dr. Akash Yadav', role: 'Co-Convener', centre: false, image: akashImg },
 ];
 
 const studentCouncil = [
-  { name: 'Saagar Jitesh Surendra', role: 'Joint Secretary', centre: false },
-  { name: 'Arin Kumar', role: 'General Secretary', centre: true },
-  { name: 'Hrishiraj Chowdhury', role: 'Joint Secretary', centre: false },
+  { name: 'Saagar Jitesh Surendra', role: 'Joint Secretary', centre: false, image: jiteshImg },
+  { name: 'Arin Kumar', role: 'General Secretary', centre: true, image: arinImg },
+  { name: 'Hrishiraj Chowdhury', role: 'Joint Secretary', centre: false, image: hrishirajImg },
 ];
 
 const clubHeads = [
-  { name: 'Moquaddas Tanweer Waris', role: 'Tinkering Club Head' },
-  { name: 'Shashank Bindal', role: 'Kode Club Head' },
-  { name: 'Aman Pal', role: 'Sponsorship, Collaboration & Media Head' },
-  { name: 'Jayant Raj Verma', role: 'Entrepreneurship Cell Head' },
-  { name: 'Kshitiz Singh', role: 'Makers Club Head' },
+  { name: 'Moquaddas Tanweer Waris', role: 'Tinkering Club Head', image: moquaddasImg },
+  { name: 'Shashank Bindal', role: 'Kode Club Head', image: shashankImg },
+  { name: 'Aman Pal', role: 'Sponsorship, Collaboration & Media Head', image: amanImg },
+  { name: 'Jayant Raj Verma', role: 'Entrepreneurship Cell Head', image: jayantImg },
+  { name: 'Kshitiz Singh', role: 'Makers Club Head', image: kshitizImg },
   { name: 'Amishi Baranwal', role: 'Design and Editorial Head' },
 ];
 
@@ -27,9 +51,9 @@ const clubSubTeams = [
     club: 'Tinkering Club',
     head: 'Moquaddas Tanweer Waris',
     coHeads: [
-      { name: 'Archit Dubey', role: 'Aerial Robotics' },
-      { name: 'Nagorao Dinkar Kute', role: 'Competitive Bots' },
-      { name: 'Kushagra Vishwakarma', role: 'Electronics' },
+      { name: 'Archit Dubey', role: 'Aerial Robotics', image: architImg },
+      { name: 'Nagorao Dinkar Kute', role: 'Competitive Bots', image: nagoraoImg },
+      { name: 'Kushagra Vishwakarma', role: 'Electronics', image: kushagraImg },
       { name: 'Saurabh Arjun Singh', role: 'Mechanics' }
     ],
   },
@@ -37,24 +61,24 @@ const clubSubTeams = [
     club: 'Kode Club',
     head: 'Shashank Bindal',
     coHeads: [
-      { name: 'Atul Gadkoti', role: 'DSA + CP' },
-      { name: 'Upanshu Smit', role: 'AI/ML' },
-      { name: 'Ritik Prajapati', role: 'Android' },
-      { name: 'Om Gaurav', role: 'Web Development' }
+      { name: 'Atul Gadkoti', role: 'DSA + CP', image: atulImg },
+      { name: 'Upanshu Smit', role: 'AI/ML', image: upanshuImg },
+      { name: 'Ritik Prajapati', role: 'Android', image: ritikImg },
+      { name: 'Om Gaurav', role: 'Web Development', image: omImg }
     ],
   },
   {
     club: 'Sponsorship & Media',
     head: 'Aman Pal',
     coHeads: [
-      { name: 'Bhargab Kashyap Keot', role: 'Co-Head' }
+      { name: 'Bhargab Kashyap Keot', role: 'Co-Head', image: bhargabImg }
     ],
   },
   {
     club: 'E-Cell',
     head: 'Jayant Raj Verma',
     coHeads: [
-      { name: 'Vansh Jain', role: 'Co-Head' }
+      { name: 'Vansh Jain', role: 'Co-Head', image: vanshImg }
     ],
   },
   {
@@ -62,20 +86,20 @@ const clubSubTeams = [
     head: 'Kshitiz Singh',
     coHeads: [
       { name: 'Aditya Tiwari', role: 'Co-Head' },
-      { name: 'Vibhor Agarwal', role: 'Co-Head' }
+      { name: 'Vibhor Agarwal', role: 'Co-Head', image: vibhorImg }
     ],
   },
   {
     club: 'Design & Editorial',
     head: 'Amishi Baranwal',
     coHeads: [
-      { name: 'Khushi Ambastha', role: 'Co-Head' },
-      { name: 'Yashu Raj', role: 'Co-Head' }
+      { name: 'Khushi Ambastha', role: 'Co-Head', image: khushiImg },
+      { name: 'Yashu Raj', role: 'Co-Head', image: yashuImg }
     ],
   },
 ];
 
-const Avatar = ({ name, size = 120 }) => {
+const Avatar = ({ name, image, size = 120 }) => {
   const initials = name.split(' ').filter(w => !w.startsWith('Dr')).map(w => w[0]).join('').slice(0, 2).toUpperCase();
   return (
     <div style={{
@@ -92,9 +116,14 @@ const Avatar = ({ name, size = 120 }) => {
       color: 'var(--brand-primary)',
       letterSpacing: '2px',
       flexShrink: 0,
-      transition: 'all var(--transition-speed)'
+      transition: 'all var(--transition-speed)',
+      overflow: 'hidden'
     }}>
-      {initials}
+      {image ? (
+        <img src={image} alt={name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+      ) : (
+        initials
+      )}
     </div>
   );
 };
@@ -167,7 +196,7 @@ const TeamSection = () => {
                 e.currentTarget.style.borderColor = person.centre ? 'var(--brand-primary)' : 'var(--border-color)';
                 if (!person.centre) e.currentTarget.style.transform = 'translateY(0)';
               }}>
-                <Avatar name={person.name} size={person.centre ? 110 : 90} />
+                <Avatar name={person.name} image={person.image} size={person.centre ? 110 : 90} />
                 <div>
                   <p style={{
                     fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase',
@@ -228,7 +257,7 @@ const TeamSection = () => {
                 e.currentTarget.style.borderColor = person.centre ? 'var(--brand-primary)' : 'var(--border-color)';
                 if (!person.centre) e.currentTarget.style.transform = 'translateY(0)';
               }}>
-                <Avatar name={person.name} size={person.centre ? 110 : 90} />
+                <Avatar name={person.name} image={person.image} size={person.centre ? 110 : 90} />
                 <div>
                   <p style={{
                     fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase',
@@ -265,7 +294,7 @@ const TeamSection = () => {
                 e.currentTarget.style.borderColor = 'var(--border-color)';
                 e.currentTarget.style.transform = 'translateY(0)';
               }}>
-                <Avatar name={person.name} size={52} />
+                <Avatar name={person.name} image={person.image} size={52} />
                 <div style={{ textAlign: 'left' }}>
                   <p style={{ fontSize: '0.7rem', letterSpacing: '1.5px', textTransform: 'uppercase', color: 'var(--text-secondary)', marginBottom: '0.3rem', fontWeight: 600, lineHeight: 1.4 }}>
                     {person.role}
@@ -331,7 +360,7 @@ const TeamSection = () => {
                       border: '1px solid var(--brand-primary)',
                       minWidth: '200px'
                     }}>
-                      <Avatar name={club.head} size={40} />
+                      <Avatar name={club.head} image={clubHeads.find(h => h.name === club.head)?.image} size={40} />
                       <span style={{ color: 'var(--text-primary)', fontWeight: 700, fontSize: '1rem' }}>{club.head}</span>
                     </div>
                   </div>
@@ -349,7 +378,7 @@ const TeamSection = () => {
                         padding: '0.75rem 1.2rem', borderRadius: '10px',
                         minWidth: '220px'
                       }}>
-                        <Avatar name={person.name} size={36} />
+                        <Avatar name={person.name} image={person.image} size={36} />
                         <div style={{ display: 'flex', flexDirection: 'column' }}>
                           <span style={{ color: 'var(--text-primary)', fontWeight: 600, fontSize: '0.9rem' }}>{person.name}</span>
                           <span style={{ color: 'var(--brand-primary)', fontSize: '0.7rem', fontWeight: 500, letterSpacing: '0.5px' }}>{person.role}</span>
@@ -365,15 +394,38 @@ const TeamSection = () => {
       </div>
 
       <style>{`
+        @media (max-width: 1024px) {
+          #team .container > div:last-child > div:last-child {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+        }
         @media (max-width: 768px) {
           #team .container > div:nth-child(2) > div:last-child {
             grid-template-columns: 1fr !important;
           }
           #team .container > div:last-child > div:last-child {
-            grid-template-columns: repeat(2, 1fr) !important;
+            grid-template-columns: 1fr !important;
+          }
+          #team .container { padding: 0 1rem !important; width: 100% !important; box-sizing: border-box !important; }
+          .team-glass-card { min-width: auto !important; width: 100% !important; }
+          
+          /* Panel styling */
+          #team [style*="padding: 2rem"] { 
+            padding: 1.5rem !important; 
+            width: 100% !important; 
+            box-sizing: border-box !important;
+            margin: 0 !important;
+          }
+          
+          /* Head/Co-head layout in panel */
+          #team [style*="display: grid; grid-template-columns: repeat(auto-fit"] {
+            grid-template-columns: 1fr !important;
+            gap: 1rem !important;
           }
         }
       `}</style>
+
+
     </section>
   );
 };

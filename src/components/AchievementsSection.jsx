@@ -1,5 +1,13 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { Award, Star, Medal, Globe } from 'lucide-react';
+import ach1 from '../assets/achievements/Achivement1.png';
+import ach2 from '../assets/achievements/Achivement2.png';
+import ach3 from '../assets/achievements/Achivement3.jpg';
+import ach4 from '../assets/achievements/Achivement4.jpg';
+import ach5 from '../assets/achievements/Achivement5.png';
+import ach6 from '../assets/achievements/Achivement6.png';
+
 
 const achievements = [
   {
@@ -47,17 +55,19 @@ const achievements = [
 ];
 
 const achievementPhotos = [
-  { url: 'https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?w=800&q=80', title: 'Robotics Champions', span: 1 },
-  { url: 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=800&q=80', title: 'SIH Winners', span: 2 },
-  { url: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&q=80', title: 'Code Gladiators', span: 2 },
-  { url: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&q=80', title: 'Award Ceremony', span: 1 },
+  { url: ach1, title: 'SIH 2024 Winners' },
+  { url: ach2, title: 'Team S&T at IIT Bombay' },
+  { url: ach3, title: 'Hackathon Night' },
+  { url: ach4, title: 'Code Gladiators' },
+  { url: ach5, title: 'Award Ceremony' },
+  { url: ach6, title: 'Robotics Workshop' },
 ];
 
 const AchievementsSection = () => {
   return (
     <section id="achievements" style={{
       display: 'block',
-      padding: '8rem 2rem',
+      padding: '8rem 0',
       backgroundColor: 'var(--bg-secondary)',
       position: 'relative',
       overflow: 'hidden',
@@ -70,7 +80,7 @@ const AchievementsSection = () => {
         pointerEvents: 'none'
       }} />
 
-      <div className="container">
+      <div className="container" style={{ padding: '0 2rem' }}>
         {/* Header */}
         <div className="fade-in" style={{ textAlign: 'center', marginBottom: '5rem' }}>
           <div style={{
@@ -117,45 +127,74 @@ const AchievementsSection = () => {
           ))}
         </div>
 
-        {/* Achievements Gallery */}
-        <div className="fade-in stagger-2">
+        {/* Achievements Gallery - Continuous Marquee */}
+        <div className="fade-in stagger-2" style={{ marginTop: '4rem', overflow: 'hidden' }}>
           <h3 style={{ fontSize: '1.3rem', color: 'var(--text-secondary)', letterSpacing: '3px', textTransform: 'uppercase', textAlign: 'center', marginBottom: '3rem' }}>
             Moments of Glory
           </h3>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gridAutoRows: '220px', gap: '1rem' }}>
-            {achievementPhotos.map((photo, i) => (
-              <div key={i} className="ach-gallery-item" style={{
-                borderRadius: '14px', overflow: 'hidden', position: 'relative',
-                gridColumn: photo.span > 1 ? `span ${photo.span}` : 'span 1',
-                border: '1px solid var(--border-color)'
-              }}>
-                <div className="ach-gallery-bg" style={{
-                  width: '100%', height: '100%',
-                  backgroundImage: `url(${photo.url})`,
-                  backgroundSize: 'cover', backgroundPosition: 'center',
-                  transition: 'transform 0.5s ease'
-                }} />
-                <div className="ach-gallery-overlay" style={{
-                  position: 'absolute', bottom: 0, left: 0, right: 0,
-                  padding: '1.5rem 1rem 1rem',
-                  background: 'linear-gradient(to top, rgba(0,0,0,0.85), transparent)',
-                  opacity: 0, transform: 'translateY(10px)', transition: 'all 0.3s ease'
+          
+          <div className="ach-marquee-container" style={{ 
+            position: 'relative', 
+            width: '100vw', 
+            left: '50%', 
+            right: '50%', 
+            marginLeft: '-50vw', 
+            marginRight: '-50vw',
+            overflow: 'hidden' 
+          }}>
+            <div className="ach-marquee-track" style={{ 
+              display: 'flex', 
+              gap: '1.5rem', 
+              width: 'max-content',
+              animation: 'achMarquee 50s linear infinite'
+            }}>
+              {[...achievementPhotos, ...achievementPhotos].map((photo, i) => (
+                <div key={i} className="ach-gallery-item" style={{
+                  width: '400px',
+                  height: '280px',
+                  borderRadius: '24px',
+                  overflow: 'hidden',
+                  position: 'relative',
+                  border: '1px solid var(--border-color)',
+                  flexShrink: 0,
+                  boxShadow: '0 10px 30px rgba(0,0,0,0.05)'
                 }}>
-                  <p style={{ color: 'white', fontWeight: 600, margin: 0 }}>{photo.title}</p>
+                  <div className="ach-gallery-bg" style={{
+                    width: '100%', height: '100%',
+                    backgroundImage: `url(${photo.url})`,
+                    backgroundSize: 'cover', backgroundPosition: 'center',
+                    transition: 'transform 0.5s ease'
+                  }} />
                 </div>
-              </div>
-            ))}
+              ))}
+
+            </div>
           </div>
         </div>
       </div>
 
+
+
       <style>{`
-        .ach-gallery-item:hover .ach-gallery-bg { transform: scale(1.05); }
-        .ach-gallery-item:hover .ach-gallery-overlay { opacity: 1 !important; transform: translateY(0) !important; }
+        @keyframes achMarquee {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(calc(-50% - 0.75rem)); }
+        }
+        .ach-marquee-track:hover { animation-play-state: paused; }
+        .ach-gallery-item:hover .ach-gallery-bg { transform: scale(1.1); }
+
+        @media (max-width: 1024px) {
+
+          .ach-gallery-item { width: 320px !important; height: 240px !important; }
+        }
         @media (max-width: 768px) {
-          .ach-gallery-item { grid-column: span 1 !important; }
+          .ach-gallery-item { width: 260px !important; height: 180px !important; }
+          #achievements { padding: 4rem 0 !important; }
         }
       `}</style>
+
+
+
     </section>
   );
 };

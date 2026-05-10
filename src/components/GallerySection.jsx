@@ -1,5 +1,6 @@
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
+
 
 const galleryImages = [
   {
@@ -41,91 +42,148 @@ const galleryImages = [
 
 const GallerySection = () => {
   return (
-    <section id="gallery" className="container" style={{
+    <section id="gallery" style={{
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
-      padding: '6rem 2rem'
+      padding: '8rem 0',
+      backgroundColor: 'var(--bg-color)',
+      overflow: 'hidden',
+      width: '100%'
     }}>
-      <div className="fade-in" style={{ textAlign: 'center', marginBottom: '4rem' }}>
-        <h2 style={{ fontSize: '3rem', marginBottom: '1rem' }}>Our <span className="text-gradient">Gallery</span></h2>
-        <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', maxWidth: '600px' }}>
+      <div className="container" style={{ textAlign: 'center', marginBottom: '6rem', padding: '0 2rem' }}>
+        <h2 style={{ fontSize: 'clamp(2.5rem, 6vw, 4rem)', marginBottom: '1rem' }}>Our <span className="text-gradient">Gallery</span></h2>
+        <p style={{ color: 'var(--text-secondary)', fontSize: '1.2rem', maxWidth: '650px', margin: '0 auto' }}>
           Glimpses of the events, workshops, and late-night coding sessions that define our vibrant community.
         </p>
       </div>
 
-      <div className="fade-in" style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(3, 1fr)',
-        gridAutoRows: '250px',
-        gap: '1.5rem',
+      <div style={{ 
         width: '100%',
-        maxWidth: '1200px'
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1.5rem',
       }}>
-        {galleryImages.map((image, index) => (
-          <div 
-            key={image.id}
-            style={{
-              position: 'relative',
-              borderRadius: '16px',
-              overflow: 'hidden',
-              gridColumn: `span ${image.colSpan}`,
-              gridRow: `span ${image.rowSpan}`,
-              border: '1px solid var(--border-color)',
-              backgroundColor: 'var(--bg-secondary)',
-              cursor: 'pointer',
-              transition: 'all var(--transition-speed)'
-            }}
-            className={`gallery-item stagger-${(index % 3) + 1}`}
-          >
-            {/* Image */}
-            <div style={{
-              width: '100%',
-              height: '100%',
-              backgroundImage: `url(${image.url})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              transition: 'transform 0.5s ease',
-            }} className="gallery-bg" />
-            
-            {/* Overlay */}
-            <div style={{
-              position: 'absolute',
-              bottom: 0,
-              left: 0,
-              right: 0,
-              padding: '2rem 1.5rem 1.5rem 1.5rem',
-              background: 'linear-gradient(to top, rgba(0,0,0,0.9), transparent)',
-              transform: 'translateY(20px)',
-              opacity: 0,
-              transition: 'all 0.3s ease'
-            }} className="gallery-overlay">
-              <h3 style={{ color: 'white', fontSize: '1.2rem', margin: 0 }}>{image.title}</h3>
-            </div>
+        {/* Row 1: Sliding Left */}
+        <div style={{ overflow: 'hidden', width: '100%' }}>
+          <div style={{ 
+            display: 'flex', 
+            gap: '1.5rem', 
+            width: 'max-content',
+            animation: 'slideLeft 60s linear infinite'
+          }}>
+            {[...galleryImages, ...galleryImages].map((image, i) => (
+              <div key={i} className="gallery-slide" style={{
+                width: '400px',
+                height: '280px',
+                borderRadius: '24px',
+                overflow: 'hidden',
+                position: 'relative',
+                border: '1px solid var(--border-color)',
+                flexShrink: 0
+              }}>
+                <div style={{
+                  width: '100%', height: '100%',
+                  backgroundImage: `url(${image.url})`,
+                  backgroundSize: 'cover', backgroundPosition: 'center',
+                  transition: 'transform 0.6s cubic-bezier(0.33, 1, 0.68, 1)',
+                }} className="gallery-bg" />
+                <div className="gallery-overlay" style={{
+                  position: 'absolute', inset: 0,
+                  padding: '1.5rem',
+                  background: 'linear-gradient(to top, rgba(0,0,0,0.8), transparent)',
+                  display: 'flex', alignItems: 'flex-end',
+                  opacity: 0, transition: 'all 0.3s ease'
+                }}>
+                  <h3 style={{ color: 'white', fontSize: '1.1rem', margin: 0, fontWeight: 600 }}>{image.title}</h3>
+                </div>
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
+
+        {/* Row 2: Sliding Right */}
+        <div style={{ overflow: 'hidden', width: '100%' }}>
+          <div style={{ 
+            display: 'flex', 
+            gap: '1.5rem', 
+            width: 'max-content',
+            animation: 'slideRight 60s linear infinite'
+          }}>
+            {[...galleryImages, ...galleryImages].map((image, i) => (
+              <div key={i} className="gallery-slide" style={{
+                width: '400px',
+                height: '280px',
+                borderRadius: '24px',
+                overflow: 'hidden',
+                position: 'relative',
+                border: '1px solid var(--border-color)',
+                flexShrink: 0
+              }}>
+                <div style={{
+                  width: '100%', height: '100%',
+                  backgroundImage: `url(${image.url})`,
+                  backgroundSize: 'cover', backgroundPosition: 'center',
+                  transition: 'transform 0.6s cubic-bezier(0.33, 1, 0.68, 1)',
+                }} className="gallery-bg" />
+                <div className="gallery-overlay" style={{
+                  position: 'absolute', inset: 0,
+                  padding: '1.5rem',
+                  background: 'linear-gradient(to top, rgba(0,0,0,0.8), transparent)',
+                  display: 'flex', alignItems: 'flex-end',
+                  opacity: 0, transition: 'all 0.3s ease'
+                }}>
+                  <h3 style={{ color: 'white', fontSize: '1.1rem', margin: 0, fontWeight: 600 }}>{image.title}</h3>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
 
+
+
+
       <style>{`
-        .gallery-item:hover .gallery-bg {
-          transform: scale(1.05);
+        @keyframes slideLeft {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(calc(-50% - 0.75rem)); }
         }
-        .gallery-item:hover .gallery-overlay {
+        @keyframes slideRight {
+          0% { transform: translateX(calc(-50% - 0.75rem)); }
+          100% { transform: translateX(0); }
+        }
+        .gallery-slide:hover .gallery-bg {
+          transform: scale(1.1);
+        }
+        .gallery-slide:hover .gallery-overlay {
           opacity: 1;
-          transform: translateY(0);
         }
-        
+        .gallery-slide:hover {
+          z-index: 10;
+        }
+        .gallery-slide {
+          transition: all 0.3s ease;
+        }
+        .gallery-slide:hover {
+          border-color: var(--brand-primary) !important;
+        }
+        div:has(> .gallery-slide):hover {
+          animation-play-state: paused;
+        }
+
+        @media (max-width: 1024px) {
+          .gallery-slide { width: 320px !important; height: 220px !important; }
+        }
         @media (max-width: 768px) {
-          .fade-in > div {
-            grid-template-columns: 1fr !important;
-            grid-auto-rows: 250px !important;
-          }
-          .gallery-item {
-            grid-column: span 1 !important;
-            grid-row: span 1 !important;
-          }
+          .gallery-slide { width: 260px !important; height: 180px !important; }
+          #gallery { padding: 4rem 0 !important; }
+          .gallery-slide h3 { fontSize: 0.9rem !important; }
         }
       `}</style>
+
+
+
     </section>
   );
 };

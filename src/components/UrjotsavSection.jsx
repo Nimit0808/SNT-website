@@ -1,5 +1,10 @@
 import React from 'react';
 import { Zap, Calendar, Users, Trophy } from 'lucide-react';
+import urj1 from '../assets/urjotsav/Urjotsav1.JPG';
+import urj2 from '../assets/urjotsav/Urjotsav2.JPG';
+import urj3 from '../assets/urjotsav/Urjotsav3.JPG';
+import urj4 from '../assets/urjotsav/Urjotsav4.JPG';
+import urj5 from '../assets/urjotsav/Urjotsav5.JPG';
 
 const stats = [
   { icon: <Users size={28} />, value: '2000+', label: 'Participants' },
@@ -18,18 +23,18 @@ const highlights = [
 ];
 
 const urjotsavPhotos = [
-  { url: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80', title: 'Opening Ceremony', span: 2 },
-  { url: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&q=80', title: 'Hackathon Night', span: 1 },
-  { url: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&q=80', title: 'Robo Wars', span: 1 },
-  { url: 'https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=800&q=80', title: 'Tech Talks', span: 1 },
-  { url: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80', title: 'Project Expo', span: 2 },
+  { url: urj1, title: 'Main Stage Event' },
+  { url: urj2, title: 'Hackathon Workshop' },
+  { url: urj3, title: 'Robo Wars Arena' },
+  { url: urj4, title: 'Project Exhibition' },
+  { url: urj5, title: 'Cultural Night' },
 ];
 
 const UrjotsavSection = () => {
   return (
     <section id="urjotsav" style={{
       display: 'block',
-      padding: '8rem 2rem',
+      padding: '8rem 0',
       position: 'relative',
       overflow: 'hidden',
       backgroundColor: 'var(--bg-color)',
@@ -44,7 +49,7 @@ const UrjotsavSection = () => {
         pointerEvents: 'none'
       }} />
 
-      <div className="container">
+      <div className="container" style={{ padding: '0 2rem' }}>
 
         {/* Header */}
         <div className="fade-in" style={{ textAlign: 'center', marginBottom: '5rem' }}>
@@ -100,46 +105,82 @@ const UrjotsavSection = () => {
           </div>
         </div>
 
-        {/* Urjotsav Gallery */}
-        <div className="fade-in stagger-3">
+        {/* Urjotsav Gallery - Moving Marquee */}
+        <div className="fade-in stagger-3" style={{ marginTop: '4rem', overflow: 'hidden', padding: '2rem 0' }}>
           <h3 style={{ fontSize: '1.3rem', color: 'var(--text-secondary)', letterSpacing: '3px', textTransform: 'uppercase', textAlign: 'center', marginBottom: '3rem' }}>
             Moments from Urjotsav
           </h3>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gridAutoRows: '220px', gap: '1rem' }}>
-            {urjotsavPhotos.map((photo, i) => (
-              <div key={i} className="urj-gallery-item" style={{
-                borderRadius: '14px', overflow: 'hidden', position: 'relative',
-                gridColumn: photo.span > 1 ? `span ${photo.span}` : 'span 1',
-                border: '1px solid var(--border-color)'
-              }}>
-                <div className="urj-gallery-bg" style={{
-                  width: '100%', height: '100%',
-                  backgroundImage: `url(${photo.url})`,
-                  backgroundSize: 'cover', backgroundPosition: 'center',
-                  transition: 'transform 0.5s ease'
-                }} />
-                <div className="urj-gallery-overlay" style={{
-                  position: 'absolute', bottom: 0, left: 0, right: 0,
-                  padding: '1.5rem 1rem 1rem',
-                  background: 'linear-gradient(to top, rgba(0,0,0,0.85), transparent)',
-                  opacity: 0, transform: 'translateY(10px)', transition: 'all 0.3s ease'
+          
+          <div className="marquee-container" style={{ 
+            position: 'relative', 
+            width: '100vw', 
+            left: '50%', 
+            right: '50%', 
+            marginLeft: '-50vw', 
+            marginRight: '-50vw',
+            overflow: 'hidden' 
+          }}>
+            <div className="marquee-track" style={{ 
+              display: 'flex', 
+              gap: '1.5rem', 
+              width: 'max-content',
+              animation: 'marquee 40s linear infinite'
+            }}>
+              {[...urjotsavPhotos, ...urjotsavPhotos].map((photo, i) => (
+                <div key={i} className="marquee-item" style={{
+                  width: '350px',
+                  height: '240px',
+                  borderRadius: '20px',
+                  overflow: 'hidden',
+                  position: 'relative',
+                  border: '1px solid var(--border-color)',
+                  flexShrink: 0
                 }}>
-                  <p style={{ color: 'white', fontWeight: 600, margin: 0 }}>{photo.title}</p>
+                  <div style={{
+                    width: '100%', height: '100%',
+                    backgroundImage: `url(${photo.url})`,
+                    backgroundSize: 'cover', backgroundPosition: 'center',
+                    transition: 'transform 0.5s ease'
+                  }} className="urj-gallery-bg" />
                 </div>
-              </div>
-            ))}
+              ))}
+
+            </div>
           </div>
         </div>
 
       </div>
 
       <style>{`
-        .urj-gallery-item:hover .urj-gallery-bg { transform: scale(1.05); }
-        .urj-gallery-item:hover .urj-gallery-overlay { opacity: 1 !important; transform: translateY(0) !important; }
+        @keyframes marquee {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(calc(-50% - 0.75rem)); }
+        }
+        .marquee-track:hover { animation-play-state: paused; }
+        .marquee-item:hover .urj-gallery-bg { transform: scale(1.1); }
+
+
+        @media (max-width: 1024px) {
+          .marquee-item { width: 280px !important; height: 200px !important; }
+        }
         @media (max-width: 768px) {
-          .urj-gallery-item { grid-column: span 1 !important; }
+          .marquee-item { width: 220px !important; height: 160px !important; }
+          #urjotsav { padding: 4rem 1rem !important; }
+          .marquee-track { gap: 1rem !important; }
+          #urjotsav .container > div:nth-child(2) { 
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 1rem !important;
+          }
+        }
+        @media (max-width: 480px) {
+          #urjotsav .container > div:nth-child(2) { 
+            grid-template-columns: 1fr !important;
+          }
         }
       `}</style>
+
+
+
     </section>
   );
 };

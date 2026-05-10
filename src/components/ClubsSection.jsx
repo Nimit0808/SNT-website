@@ -77,7 +77,7 @@ const ClubsSection = () => {
       ref={containerRef} 
       style={{ display: 'block', height: '400vh', position: 'relative', backgroundColor: 'var(--bg-color)', padding: 0, transition: 'background-color var(--transition-speed)' }}
     >
-      <div style={{
+      <div className="clubs-sticky-wrapper" style={{
         position: 'sticky',
         top: 0,
         height: '100vh',
@@ -88,7 +88,7 @@ const ClubsSection = () => {
         alignItems: 'center'
       }}>
         
-        <div style={{ position: 'relative', width: '400px', height: '400px', zIndex: 10 }}>
+        <div className="plant-container" style={{ position: 'relative', width: '400px', height: '400px', zIndex: 10 }}>
           <Reticle />
           <svg viewBox="0 0 100 100" style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0 }}>
             <motion.path
@@ -143,15 +143,14 @@ const ClubsSection = () => {
             [start, start + 0.05],
             ['var(--text-secondary)', 'var(--brand-primary)']
           );
-
+          
           return (
             <motion.div 
               key={club.id}
+              className={`club-card club-card-${index}`}
               style={{
                 position: 'absolute',
                 ...club.position,
-                width: '350px',
-                padding: '2rem 1.5rem 1.5rem 1.5rem',
                 backgroundColor: 'var(--bg-secondary)',
                 borderRadius: '12px',
                 borderWidth: '1px',
@@ -163,7 +162,7 @@ const ClubsSection = () => {
                 transition: 'background-color var(--transition-speed)'
               }}
             >
-              <motion.div style={{
+              <motion.div className="club-number" style={{
                 position: 'absolute',
                 top: '-24px',
                 left: '-24px',
@@ -196,11 +195,11 @@ const ClubsSection = () => {
                 {club.name}
               </motion.h3>
               
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: 1.6, margin: '0 0 1.5rem 0' }}>
+              <p className="club-desc" style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: 1.6, margin: '0 0 1.5rem 0' }}>
                 {club.desc}
               </p>
 
-              <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+              <div className="club-tags" style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
                 {club.tags.map(tag => (
                   <div key={tag} style={{
                     padding: '0.4rem 0.8rem',
@@ -219,7 +218,64 @@ const ClubsSection = () => {
         })}
         
       </div>
+
+      <style>{`
+        .club-card {
+          width: 350px;
+          padding: 2rem 1.5rem 1.5rem 1.5rem;
+        }
+        @media (max-width: 1024px) {
+          .club-card { width: 300px; padding: 1.5rem; }
+          .plant-container { transform: scale(0.8); }
+        }
+        @media (max-width: 768px) {
+          #clubs { 
+            height: auto !important; 
+            padding: 4rem 1rem !important; 
+          }
+          .clubs-sticky-wrapper {
+            position: relative !important;
+            height: auto !important;
+            flex-direction: column;
+            gap: 3rem;
+            overflow: visible !important;
+          }
+          .plant-container { 
+            position: relative !important;
+            top: 0 !important;
+            left: 0 !important;
+            transform: none !important;
+            margin: 0 auto 3rem auto !important;
+            width: 250px !important; 
+            height: 250px !important; 
+            opacity: 1 !important;
+          }
+          .club-card { 
+            width: 100% !important; 
+            position: relative !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            transform: none !important;
+            opacity: 1 !important;
+            margin-bottom: 0;
+            box-sizing: border-box;
+            border-color: var(--brand-primary) !important;
+          }
+          .club-number {
+            top: -15px !important;
+            left: -15px !important;
+            width: 36px !important;
+            height: 36px !important;
+            font-size: 0.8rem !important;
+          }
+        }
+      `}</style>
+
+
     </section>
+
   );
 };
 
