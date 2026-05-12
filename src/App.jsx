@@ -10,7 +10,7 @@ import TeamSection from './components/TeamSection';
 import Footer from './components/Footer';
 
 function App() {
-  const [theme, setTheme] = useState('dark');
+  const [theme, setTheme] = useState('light');
 
   // Intersection Observer for scroll animations
   useEffect(() => {

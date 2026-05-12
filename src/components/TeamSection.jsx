@@ -22,11 +22,13 @@ import vibhorImg from '../assets/team/Vibhor_Agarwal.png';
 import yashuImg from '../assets/team/Yashu_Raj.png';
 import karanImg from '../assets/team/Dr_Karan_Malik.png';
 import akashImg from '../assets/team/Dr_Akash_Yadav.png';
+import amishiImg from '../assets/team/Amishi.jpg';
+import gargiImg from '../assets/team/dr_Gargi_srivastava.jpg';
 
 
 // Convener in centre, Co-Conveners on each side
 const facultyAdvisors = [
-  { name: 'Dr. Gargi Shri Vastav', role: 'Co-Convener', centre: false },
+  { name: 'Dr. Gargi Srivastava', role: 'Co-Convener', centre: false, image: gargiImg },
   { name: 'Dr. Karan Malik', role: 'Convener', centre: true, image: karanImg },
   { name: 'Dr. Akash Yadav', role: 'Co-Convener', centre: false, image: akashImg },
 ];
@@ -43,7 +45,7 @@ const clubHeads = [
   { name: 'Aman Pal', role: 'Sponsorship, Collaboration & Media Head', image: amanImg },
   { name: 'Jayant Raj Verma', role: 'Entrepreneurship Cell Head', image: jayantImg },
   { name: 'Kshitiz Singh', role: 'Makers Club Head', image: kshitizImg },
-  { name: 'Amishi Baranwal', role: 'Design and Editorial Head' },
+  { name: 'Amishi Baranwal', role: 'Design and Editorial Head', image: amishiImg },
 ];
 
 const clubSubTeams = [
