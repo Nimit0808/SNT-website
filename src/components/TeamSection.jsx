@@ -24,6 +24,7 @@ import karanImg from '../assets/team/Dr_Karan_Malik.png';
 import akashImg from '../assets/team/Dr_Akash_Yadav.png';
 import amishiImg from '../assets/team/Amishi.jpg';
 import gargiImg from '../assets/team/dr_Gargi_srivastava.jpg';
+import nimitImg from '../assets/team/Nimit.png';
 
 
 // Convener in centre, Co-Conveners on each side
@@ -66,7 +67,8 @@ const clubSubTeams = [
       { name: 'Atul Gadkoti', role: 'DSA + CP', image: atulImg },
       { name: 'Upanshu Smit', role: 'AI/ML', image: upanshuImg },
       { name: 'Ritik Prajapati', role: 'Android', image: ritikImg },
-      { name: 'Om Gaurav', role: 'Web Development', image: omImg }
+      { name: 'Om Gaurav', role: 'Web Development', image: omImg },
+      { name: 'Nimit Jain', role: 'Open Source & Dev Ops', image: nimitImg }
     ],
   },
   {
